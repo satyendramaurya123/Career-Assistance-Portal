@@ -3,8 +3,7 @@ import { createClient } from "@/lib/supabase/server";
 import { createAdminClient } from "@/lib/supabase/admin";
 import { uploadRateLimit } from "@/lib/rate-limit";
 
-import { PDFParse } from "pdf-parse";
-import { ensurePdfWorkerConfigured } from "@/lib/pdf/worker-setup";
+import { loadPdfParse } from "@/lib/pdf/worker-setup";
 
 export async function POST(request: NextRequest) {
   try {
@@ -23,7 +22,7 @@ export async function POST(request: NextRequest) {
     const buffer = Buffer.from(await file.arrayBuffer());
     let extractedText = "";
     try {
-      ensurePdfWorkerConfigured();
+      const PDFParse = await loadPdfParse();
       const parser = new PDFParse({ data: new Uint8Array(buffer) });
       const textResult = await parser.getText();
       extractedText = (textResult.text || "").replace(/\n--\s*\d+\s*of\s*\d+\s*--\n?/g, "\n").trim();
