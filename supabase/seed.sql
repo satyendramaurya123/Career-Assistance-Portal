@@ -1,0 +1,2 @@
+-- Seed Data
+-- After signing up, run: UPDATE public.users SET role = 'ADMIN' WHERE email = 'your@email.com';
