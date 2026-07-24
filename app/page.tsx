@@ -32,7 +32,7 @@ export default function LandingPage() {
       <section className="pt-20 pb-16 px-4">
         <div className="max-w-4xl mx-auto text-center">
           <div className="inline-flex items-center gap-2 bg-primary/10 text-primary rounded-full px-4 py-2 text-sm font-medium mb-6">
-            <Zap className="w-4 h-4" /> Powered by Google Gemini AI
+            <Zap className="w-4 h-4" /> Powered by Career Assistance
           </div>
           <h1 className="text-5xl md:text-6xl font-bold leading-tight mb-6">
             Land Your Dream Job with{" "}
