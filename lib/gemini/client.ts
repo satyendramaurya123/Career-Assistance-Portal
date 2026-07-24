@@ -9,7 +9,7 @@ const safetySettings = [
   { category: HarmCategory.HARM_CATEGORY_DANGEROUS_CONTENT, threshold: HarmBlockThreshold.BLOCK_MEDIUM_AND_ABOVE },
 ];
 
-export function getGeminiModel(modelName = "gemini-2.5-flash") {
+export function getGeminiModel(modelName = "gemini-2.5-flash-lite") {
   return genAI.getGenerativeModel({
     model: modelName,
     safetySettings,
@@ -18,12 +18,14 @@ export function getGeminiModel(modelName = "gemini-2.5-flash") {
 }
 
 export function getGeminiProModel() {
-  // Note: gemini-2.5-pro has a 0 free-tier quota (Google requires billing enabled
-  // for Pro-tier access). Using gemini-2.5-flash here instead so this works on a
-  // free API key. If you enable billing later, you can change "gemini-2.5-flash"
-  // below back to "gemini-2.5-pro" for higher-quality output on these features.
+  // Note: gemini-2.5-pro is paid-tier only (Google requires billing enabled for
+  // Pro-tier access as of April 2026). Using gemini-2.5-flash-lite here instead —
+  // it has the highest free-tier daily quota of the available models, which
+  // matters most for these AI-heavy features (skill gap, roadmap, interview,
+  // cover letter, LinkedIn summary). If you enable billing later, you can change
+  // "gemini-2.5-flash-lite" below to "gemini-2.5-pro" for higher-quality output.
   return genAI.getGenerativeModel({
-    model: "gemini-2.5-flash",
+    model: "gemini-2.5-flash-lite",
     safetySettings,
     generationConfig: { temperature: 0.8, topK: 40, topP: 0.95, maxOutputTokens: 8192 },
   });
